@@ -6,7 +6,7 @@
   "authors": [
     {
       "name": "Samir Gamal",
-      "email": "your-email@example.com",
+      "email": "samirgmal26@gmail.com",
       "homepage": "https://github.com/Samir-Gamal",
       "role": "Developer"
     }
@@ -28,8 +28,8 @@
     "illuminate/support": "^10.0 || ^11.0 || ^12.0"
   },
   "support": {
-    "issues": "https://github.com/Samir-Gamal/artisan-ui/issues",
-    "source": "https://github.com/Samir-Gamal/artisan-ui"
+    "issues": "https://github.com/Samir-Gamal/morasoft-artisan-ui/issues",
+    "source": "https://github.com/Samir-Gamal/morasoft-artisan-ui"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
