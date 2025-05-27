@@ -1,0 +1,36 @@
+{
+  "name": "morasoft/artisan-ui",
+  "description": "A Laravel package providing a GUI to run artisan commands.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Samir Gamal",
+      "email": "your-email@example.com",
+      "homepage": "https://github.com/Samir-Gamal",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Morasoft\\ArtisanUI\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Morasoft\\ArtisanUI\\ArtisanUIServiceProvider"
+      ]
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "illuminate/support": "^10.0 || ^11.0 || ^12.0"
+  },
+  "support": {
+    "issues": "https://github.com/Samir-Gamal/artisan-ui/issues",
+    "source": "https://github.com/Samir-Gamal/artisan-ui"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
