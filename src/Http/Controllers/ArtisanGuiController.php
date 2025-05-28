@@ -33,6 +33,12 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
                 case 'validation':
                     return $this->runRequest($request);
 
+                case 'event':
+                    return $this->runEvent($request);
+
+                case 'listener':
+                    return $this->runListener($request);
+
                 case 'artisan':
                     return $this->runArtisan($request);
 
@@ -72,7 +78,12 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
             return back()->with('output', '❌ Please enter a controller name.');
         }
 
-        Artisan::call("make:controller $name");
+        $command = "make:controller $name";
+        $with = $request->input('with', []);
+        if (in_array('resource', $with)) {
+            $command .= ' --resource';
+        }
+        Artisan::call($command);
         return back()->with('output', Artisan::output());
     }
 
@@ -109,6 +120,33 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
         return back()->with('output', Artisan::output());
     }
 
+    protected function runEvent(Request $request)
+    {
+        $name = trim($request->input('event_name'));
+        if (empty($name)) {
+            return back()->with('output', '❌ Please enter a event name.');
+        }
+
+        Artisan::call("make:event $name");
+        return back()->with('output', Artisan::output());
+    }
+
+    protected function runListener(Request $request)
+    {
+        $name = trim($request->input('listener_name'));
+        if (empty($name)) {
+            return back()->with('output', '❌ Please enter a listener name.');
+        }
+
+        $command = "make:listener $name";
+        $with = $request->input('with', []);
+        if (in_array('event', $with)) {
+            $command .= ' --event=' . $request->event_name;
+        }
+        Artisan::call($command);
+        return back()->with('output', Artisan::output());
+    }
+
     protected function runArtisan(Request $request)
     {
         $name = trim($request->input('artisan_command'));
@@ -124,7 +162,6 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
             if (empty(trim($output))) {
                 $output = "✅ Artisan command '$name' executed successfully, but no output was returned.";
             }
-
         } catch (\Throwable $e) {
             $output = "❌ An error occurred:\n" . $e->getMessage();
         }
