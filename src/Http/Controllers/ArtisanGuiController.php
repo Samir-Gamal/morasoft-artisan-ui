@@ -52,7 +52,8 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
 
     protected function createModel(Request $request)
     {
-        $name = trim($request->input('model_name'));
+        $name = getConvenientName($request->input('model_name'));
+
         if (empty($name)) {
             return back()->with('output', '❌ Please enter a model name.');
         }
@@ -73,12 +74,14 @@ class ArtisanGuiController extends \App\Http\Controllers\Controller
 
     protected function createController(Request $request)
     {
-        $name = trim($request->input('controller_name'));
+        $name = getConvenientName($request->input('controller_name'));
+
         if (empty($name)) {
             return back()->with('output', '❌ Please enter a controller name.');
         }
 
-        $command = "make:controller $name";
+        $command = "make:controller $name" . 'Controller'; // concate with 'Controller' phrase
+
         $with = $request->input('with', []);
         if (in_array('resource', $with)) {
             $command .= ' --resource';
