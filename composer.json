@@ -14,7 +14,10 @@
   "autoload": {
     "psr-4": {
       "Morasoft\\ArtisanUI\\": "src/"
-    }
+    },
+    "files": [
+      "src/Helpers/helper.php"
+    ]
   },
   "extra": {
     "laravel": {
